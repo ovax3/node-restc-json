@@ -1,16 +1,16 @@
 var formatter = function (options, next) {
   var data = options.data;
   if (data) {
-    options.body = JSON.stringify(data);
+    options.data = JSON.stringify(data);
   }
   return next();
 };
 
 var parser = function (req, res, next) {
-  var body = res.body;
-  if (body) {
+  var data = res.data;
+  if (data) {
     try {
-      res.data = JSON.parse(res.body);
+      res.data = JSON.parse(data);
     } catch (e) { }
   }
   return next();
